@@ -16,8 +16,17 @@ const createClock = () => {
 		(state, clockInfo) => {
 			const progressType = state.pomodoroInProgress ? 'Pomodoro' : 'Break';
 			const allSessionsCompleted = state.elapsedSessions === clockInfo.noOfSessions;
-			document.getElementById('timer').innerHTML =
-				`Clock (${allSessionsCompleted ? 'Finished' : progressType}): ${state.elapsedProgressInSeconds} Finished Sessions: ${state.elapsedSessions}/${clockInfo.noOfSessions}`;
+			//document.getElementById('timer').innerHTML =
+			//	`Clock (${allSessionsCompleted ? 'Finished' : progressType}): ${state.elapsedProgressInSeconds} Finished Sessions: ${state.elapsedSessions}/${clockInfo.noOfSessions}`;
+			document.getElementById('clock-type').innerHTML = 
+				`Clock (${allSessionsCompleted ? 'Finished' : progressType})`;
+			document.getElementById('clock-timer').innerHTML = 
+				`${state.elapsedProgressInSeconds}`;	
+			document.getElementById('finished-session-display').innerHTML = 
+				`Finished Sessions: ${state.elapsedSessions}/${clockInfo.noOfSessions}`;
+			if(allSessionsCompleted) {
+				document.getElementById('pause-button').style.display = 'none';
+			}
 		}
 	);
 };
@@ -40,6 +49,7 @@ const pauseControl = () => {
 
 const resetControl = () => {
 	clock.reset();
+	document.getElementById('pause-button').innerHTML = 'Pause';
 	clock = null;
 	hideClock();
 };
