@@ -113,5 +113,34 @@ class PomodoroClock { // eslint-disable-line no-unused-vars
 		};
 		this.canStartAnotherSession = () => this.state.elapsedSessions < this.noOfSessions;
 		this.isPaused = () => this.state.pause;
+
+		this.convertIntoCountDownTime = () => {
+			const progressType = this.state.pomodoroInProgress ? 'Pomodoro' : 'Break'
+			const totalTime = progressType === 'Pomodoro' ? 
+			this.sessionLengthInSeconds : this.breakLengthInSeconds;
+
+			if (!(this.noOfSessions === this.state.elapsedSessions)) {
+				return getCountDownTime(totalTime, this.state.elapsedProgressInSeconds);
+			}
+		}
+
+		const getCountDownTime = (
+			totalTime, 
+			elapsedProgressInSeconds
+		) => {
+			const remainingTime = parseInt(totalTime - elapsedProgressInSeconds);
+			let remainingTimeMinutes = remainingTime / 60;
+			let remainingTimeSeconds = remainingTime % 60;
+
+			if (parseInt(remainingTimeMinutes) < 10) {
+				remainingTimeMinutes = `0${parseInt(remainingTimeMinutes)}`;	
+			}
+
+			if (parseInt(remainingTimeSeconds) < 10) {
+				remainingTimeSeconds = `0${parseInt(remainingTimeSeconds)}`;
+			}
+
+			return `${remainingTimeMinutes}:${remainingTimeSeconds}`;
+		}
 	}
 }
