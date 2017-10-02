@@ -5,23 +5,35 @@
 		<title>Pomodoro Clock</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" type="text/css" href="clockUi.css">
+		<link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 	</head>
 
 	<body>
+		<div class="heading-banner">
+			<p class="banner-text">Pomodoro Clock</p>
+		</div>
 		<div id="input-controls">
-			<input id="sessions" type="number" placeholder="No. of sessions"/>
-			<input id="minutes-per-pomodoro" type="number" placeholder="No. of minutes per pomodoro"/>
-			<input id="minutes-per-break" type="number" placeholder="No. of minutes per break"/>
-			<button id="start-button">Start</button>
+			<div id="input-boxes">
+				<input id="sessions" type="number" placeholder="Sessions"/>
+				<input id="minutes-per-pomodoro" type="number" placeholder="Pomodoro length"/>
+				<input id="minutes-per-break" type="number" placeholder="Break length"/>
+			</div>
+			<button id="start-button"><span>Start</span></button>
 		</div>
 		<div id="pomodoro-clock" style="display: none;">
-			<div id="timer">
+			<div class="pomodoro-clock-group">
+				<div id="clock-type" class="flex-class"></div>
+				<div id="clock-timer" class="flex-class"></div>
 			</div>
-			<div id="controls">
+			<div id="finished-session-display"></div>
+			<div class="pause-reset-controls">
 				<button id="pause-button">Pause</button>
 				<button id="reset-button">Reset</button>
 			</div>
 		</div>
+		
 		<script src="PomodoroClock.js"></script>
 		<script src="index.js"></script>
 	</body>
